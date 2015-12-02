@@ -5,7 +5,10 @@
 	<meta charset="utf-8" />
 </head>
 <body ng-app="app" ng-controller="HomeController">
-    <pagination pagination-html get="get" list="list"></pagination>
+    <span ng-repeat="item in list">
+        {{item}}
+    </span>
+    <pagination pagination-html get="get" data="data" pagesize="pageSize"></pagination>
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/angular.min.js"></script>
     <script src="assets/js/module.js"></script>

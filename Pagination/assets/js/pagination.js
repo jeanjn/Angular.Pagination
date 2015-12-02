@@ -2,19 +2,19 @@
 directives.directive("pagination", function ($http) {
     return function ($scope, elm, attrs) {
         debugger;
-        var list = $scope[attrs.list]
-        $scope.pages = getPages(list);
+        var data = $scope[attrs.data]
+        $scope.pages = getPages(data.count);
 
         $scope.goTo = function (page) {
             debugger;
-            list = $scope[attrs.get](page);
-            $scope.pages = getPages(list);
+            result = $scope[attrs.get](page);
+            $scope.pages = getPages(result.count);
         };
 
-        function getPages(list) {
+        function getPages(count) {
             var pages = [];
-
-            for (var i = 0; i < list.length; i++) {
+            count = Math.ceil(count / $scope[attrs.pagesize]);
+            for (var i = 0; i < count; i++) {
                 pages.push(i);
             }
 

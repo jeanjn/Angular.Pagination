@@ -6,9 +6,16 @@
       $scope.get = function (page) {
           debugger;
           var list = getTestList();
+
+          $scope.data = { count: list.length };
+
           list = skip(list, page * $scope.pageSize);
           list = take(list, $scope.pageSize);
           $scope.list = list;
+
+          $scope.data.list = list;
+
+          return $scope.data;
       }
 
       function getTestList() {
@@ -20,21 +27,21 @@
           return list;
       }
 
-      function skip(list, value) {
+      function skip(list, start) {
           var newList = [];
-          for (var i = value; i < list.length; i++) {
+          for (var i = start; i < list.length; i++) {
               newList.push(list[i]);
           }
           return newList;
       }
 
-      function take(list, value) {
+      function take(list, pageSize) {
           var newList = [];
-          for (var i = 0; i < value; i++) {
+          for (var i = 0; i < pageSize; i++) {
               newList.push(list[i]);
           }
           return newList;
       }
 
-      $scope.get(0);
+      $scope.get(0);//criar txt pagesize, next, previous, last, first, desabilitar current
   });
